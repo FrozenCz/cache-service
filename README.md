@@ -24,7 +24,8 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project is based on [Nest](https://github.com/nestjs/nest).
+This is simple cache service.
 
 ## Installation
 
