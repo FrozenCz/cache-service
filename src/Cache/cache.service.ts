@@ -35,15 +35,11 @@ export class CacheService {
     const abortController = new AbortController();
 
     timer(CacheService.cacheDebounceTimeMs).pipe(
-      switchMap(() => {
-        return this.retrieveData(url, abortController);
-      }),
+      tap(() => this.cacheStore.clearCache(key)),
+      switchMap(() => this.retrieveData(url, abortController)),
       take(1),
       takeUntil(this.isNewRequestForCache({ cacheKey: key, time: created })
-        .pipe(
-          tap(() => {
-            abortController.abort();
-          })))
+        .pipe(tap(() => abortController.abort())))
     ).subscribe((result) => {
       if (this.isJson(result.data)) {
         this.cacheStore.saveCache({key, value: JSON.stringify(result.data)})

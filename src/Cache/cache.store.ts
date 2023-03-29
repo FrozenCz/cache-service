@@ -29,6 +29,10 @@ export class CacheStore {
     throw new BadRequestException("not found");
   }
 
+  clearCache(key: string): Promise<any> {
+    return this.cacheManager.del(key);
+  }
+
   getCacheIds() {
     return this.cacheManager.store.keys();
   }
