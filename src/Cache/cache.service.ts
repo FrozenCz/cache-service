@@ -17,6 +17,7 @@ export class CacheService {
   }
 
   handleCache(param: { key: string, url: string }) {
+    console.log("tryingToHandle");
     this.insertIntoCacheGuard(param);
     this.createCacheTimer(param);
   }
