@@ -10,7 +10,11 @@ async function bootstrap() {
       transport: Transport.KAFKA,
       options: {
         client: {
-          brokers: ['1', 'localhost:9092']
+          brokers: ['kafka-1:9092'],
+        },
+        consumer: {
+          groupId: '1',
+          allowAutoTopicCreation: true
         }
       }
     }
@@ -18,4 +22,7 @@ async function bootstrap() {
   await app.listen();
   console.log('služba poslouchá')
 }
-bootstrap();
+setTimeout(() => {
+  bootstrap();
+}, 10000)
+
